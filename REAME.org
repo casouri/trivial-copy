@@ -1,0 +1,19 @@
+#+TITLE: Trivial copy
+
+Copy, paste and move like you do in Finder in Dired. Currently this only works for macOS.
+
+[[./trivial-copy.gif]]
+
+* Install
+
+Get =trivial-copy.el=, add to =load-path=, and =(require 'trivial-copy.el)=
+
+* Usage
+| Command              | Description                                          |
+| =trivial-copy-copy=  | Copy marked files to system clipboard                |
+| =trivial-copy-paste= | Paste files in system clipboard to current directory |
+| =trivial-copy-move=  | Move files in system clipboard to current directory  |
+
+* Contribute
+
+I don’t know about Linux and windows systems, PR is welcomed!
