@@ -18,4 +18,4 @@ You also need command line tools from [[https://github.com/casouri/pbcopyf][here
 
 * Contribute
 
-Currently this only works on mac, PR’s for Linux and windows are welcomed.
+Currently this only works on mac, PR’s for Linux and windows are welcome.
