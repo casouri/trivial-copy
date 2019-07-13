@@ -1,12 +1,14 @@
 #+TITLE: Trivial copy
 
-Copy, paste and move like you do in Finder in Dired. Currently this only works for macOS.
+Copy, paste and move like you do in Finder in Dired. The point is that it is integrated with the system clipboard, so you can copy in Finder and paste in Dired, or do the reverse.
 
 [[./trivial-copy-small.gif]]
 
 * Install
 
-Get =trivial-copy.el=, add to =load-path=, and =(require 'trivial-copy.el)=
+Get =trivial-copy.el=, add to =load-path=, and =(require 'trivial-copy.el)=.
+
+You also need command line tools from [[https://github.com/casouri/pbcopyf][here]], put them in somewhere in PATH.
 
 * Usage
 | Command              | Description                                          |
@@ -16,4 +18,4 @@ Get =trivial-copy.el=, add to =load-path=, and =(require 'trivial-copy.el)=
 
 * Contribute
 
-I don’t know about Linux and windows systems, PR is welcomed!
+Currently this only works on mac, PR’s for Linux and windows are welcomed.
