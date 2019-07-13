@@ -2,7 +2,7 @@
 
 Copy, paste and move like you do in Finder in Dired. Currently this only works for macOS.
 
-[[./trivial-copy.gif]]
+[[./trivial-copy-small.gif]]
 
 * Install
 
