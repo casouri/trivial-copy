@@ -28,7 +28,8 @@
                                                  (shell-command-to-string
                                                   (string-join
                                                    (append (list trivial-copy-mac-copy-exe) file-list)
-                                                   " ")))))
+                                                   " "))))
+                                     (gnu/linux . trivial-copy-linux-copy))
   "An alist of copy functions. (system-symbol . function)
 System-symbol is symbolized from `system-type’.
 The function takes a list of absolute file paths.")
@@ -46,6 +47,37 @@ The function takes an absolute directory path.")
   "An alist of move functions. (system-symbol . function)
 System-symbol is symbolized from `system-type’.
 The function takes an absolute directory path.")
+
+(defun trivial-copy--linux-get-xclip-target ()
+  "Get xclip target argument for DE.
+
+See https://unix.stackexchange.com/a/53537/155739"
+  (let ((case-fold-search t)
+        (xdg (getenv "XDG_CURRENT_DESKTOP")))
+    (cond ((string-match "gnome" xdg)
+           "x-special/gnome-copied-files")
+          ;; these are unteseted...
+          ((string-match "kde" xdg)
+           "application/x-kde-cutselection")
+          (t
+           "text/uri-list"))))
+
+(defun trivial-copy-linux-copy (fs)
+  "Copy files FS to system clipboard."
+  (unless (executable-find "xclip")
+    (user-error "Program xclip not found in PATH"))
+  (with-temp-buffer
+    (insert "copy\n")
+    (while (cdr fs)
+      (insert "file://" (pop fs) "\n"))
+    (insert "file://" (pop fs) "\0")
+    (call-process-region (point-min) (point-max)
+                         "xclip" nil nil nil
+                         "-i"
+                         "-selection"
+                         "clipboard"
+                         "-t"
+                         (trivial-copy--linux-get-xclip-target))))
 
 (defun trivial-copy-copy ()
   "Copy marked files to system’s clipboard."
