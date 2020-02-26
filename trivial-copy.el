@@ -96,7 +96,8 @@ See https://unix.stackexchange.com/a/53537/155739"
 (defun trivial-copy-move ()
   "Move files in system’s clipboard to current directory."
   (interactive)
-  (when (derived-mode-p 'dired-mode)
+  (when (and (derived-mode-p 'dired-mode)
+             (yes-or-no-p "Move copied files here?"))
     (funcall (alist-get (trivial-copy-os) trivial-copy-move-fn-alist)
              default-directory)))
 
