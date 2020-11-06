@@ -27,7 +27,8 @@
 (defvar trivial-copy-copy-fn-alist '((darwin . (lambda (file-list)
                                                  (shell-command-to-string
                                                   (string-join
-                                                   (append (list trivial-copy-mac-copy-exe) file-list)
+                                                   (append (list trivial-copy-mac-copy-exe)
+                                                           (mapcar (lambda (file) (format "\"%s\"" file)) file-list))
                                                    " "))))
                                      (gnu/linux . trivial-copy-linux-copy))
   "An alist of copy functions. (system-symbol . function)
